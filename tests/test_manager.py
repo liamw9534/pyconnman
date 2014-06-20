@@ -6,7 +6,6 @@ import unittest
 import pyconnman
 import mock
 import dbus
-import os
 
 
 class ConnManagerTest(unittest.TestCase):

@@ -13,7 +13,7 @@ class ConnManager(ConnInterface):
     * **State(str) [readonly]**:
         The global connection state of a system.  Possible values
         are "offline", "idle", "ready" and "online".
-        
+
         If the device is in offline mode, the value "offline"
         indicates this special global state. It can also be
         retrieved via the OfflineMode property, but is kept
@@ -73,7 +73,8 @@ class ConnManager(ConnInterface):
 
     SIGNAL_SERVICES_CHANGED = 'ServicesChanged'
     """
-    :signal ServicesChanged(signal_name, user_arg, array{object, dict}, array{object}):
+    :signal ServicesChanged(signal_name, user_arg, \
+      array{object, dict}, array{object}):
          Signals a list of services that have been changed
          via the first array. And a list of service that
          have been removed via the second array.

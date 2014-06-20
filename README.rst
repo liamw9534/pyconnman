@@ -48,7 +48,7 @@ Changelog
 v0.1.0
 ------
 
-Initial release supporting pyconnman v1.24 dbus API with following interfaces:
+Initial release supporting ConnMan v1.24 dbus API with following interfaces:
 
 - ConnManager (net.connman.Manager)
 - ConnService (net.connman.Service)

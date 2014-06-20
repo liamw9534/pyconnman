@@ -159,7 +159,7 @@ class ConnService(ConnInterface):
         where name resolution might fail.
 
     * **Timeservers(array{string}) [readonly]**:
-    
+
         The list of currently active timeservers for this
         service. If the server is not in READY or ONLINE
         state than this list will be empty.
@@ -468,12 +468,12 @@ class ConnService(ConnInterface):
         :raises dbus.Exception: net.connman.Service.Error.InvalidArguments
         """
         return self._interface.Remove()
-    
+
     def move_before(self, obj_path):
         """
         If a service has been used before, this allows a
         reorder of the favorite services.
-        
+
         :param string obj_path:
             Service's object path to move this object before
         :return:
@@ -485,7 +485,7 @@ class ConnService(ConnInterface):
         """
         If a service has been used before, this allows a
         reorder of the favorite services.
-        
+
         :param string obj_path:
             Service's object path to move this object before
         :return:

@@ -6,7 +6,6 @@ import unittest
 import pyconnman
 import mock
 import dbus
-import os
 
 
 class ConnTechnologyTest(unittest.TestCase):
@@ -26,7 +25,7 @@ class ConnTechnologyTest(unittest.TestCase):
     def test_scan(self):
         manager = pyconnman.ConnManager()
         technologies = manager.get_technologies()
-        tech = pyconnman.ConnTechnology(technologies[0][0]) 
+        tech = pyconnman.ConnTechnology(technologies[0][0])
         print repr(tech)
         print '========================================================='
         print tech

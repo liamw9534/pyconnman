@@ -53,7 +53,7 @@ class GenericAgent(dbus.service.Object):
     In case of WISPr credentials requests and if the user
     prefers to login through the browser by himself, agent
     will have to return a LaunchBrowser error (see below).
-    
+
     :Examples:
 
     1. Requesting a passphrase for WPA2 network
@@ -300,7 +300,7 @@ class SimpleWifiAgent(GenericAgent):
     """
     def __init__(self, obj_path):
         super(SimpleWifiAgent, self).__init__(obj_path)
-        self.service_params = {'*':{}}
+        self.service_params = {'*': {}}
 
     """
     Set the service parameters to use by the WiFi agent
@@ -338,7 +338,7 @@ class SimpleWifiAgent(GenericAgent):
         self.service_params[service]['SSID'] = ssid
         self.service_params[service]['Identity'] = identity
         self.service_params[service]['Username'] = username
-        self.service_params[service]['Password'] = password    
+        self.service_params[service]['Password'] = password
         self.service_params[service]['Passphrase'] = passphrase
         self.service_params[service]['WPS'] = wpspin
 
@@ -355,30 +355,30 @@ class SimpleWifiAgent(GenericAgent):
         else:
             params = self.service_params['*']
 
-        if (fields.has_key('Error')):
+        if ('Error' in fields):
             raise ConnCanceledException('Canceled')
-        if (fields.has_key('Name')):
+        if ('Name' in fields):
             if (params.get('SSID')):
                 response['SSID'] = params.get('SSID')
             if (params.get('Name')):
                 response['Name'] = params.get('Name')
-        if (fields.has_key('WPS')):
+        if ('WPS' in fields):
             if (params.get('WPS')):
                 response['WPS'] = params.get('WPS')
-        if (fields.has_key('Passphrase')):
+        if ('Passphrase' in fields):
             if (params.get('Passphrase')):
                 response['Passphrase'] = params.get('Passphrase')
-        if (fields.has_key('Identity')):
+        if ('Identity' in fields):
             if (params.get('Identity')):
                 response['Identity'] = params.get('Identity')
             else:
                 raise ConnCanceledException('Identity not configured by user')
-        if (fields.has_key('Username')):
+        if ('Username' in fields):
             if (params.get('Username')):
                 response['Username'] = params.get('Username')
             else:
                 raise ConnCanceledException('Username not configured by user')
-        if (fields.has_key('Password')):
+        if ('Password' in fields):
             if (params.get('Password')):
                 response['Password'] = params.get('Password')
             else:

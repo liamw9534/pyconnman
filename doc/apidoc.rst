@@ -56,3 +56,14 @@ Agent
     :members: GenericAgent, SimpleWifiAgent
     :inherited-members:
     :show-inheritance:
+
+
+Exceptions
+----------
+
+.. inheritance-diagram:: pyconnman.exceptions
+
+.. automodule:: pyconnman.exceptions
+    :members:
+    :inherited-members:
+    :show-inheritance:

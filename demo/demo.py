@@ -228,7 +228,7 @@ def agent_start(args):
     if (len(args)):
         agent_path = args.pop(0)
         while (len(args)):
-            (param,value) = args.pop(0).split('=', 1)
+            (param, value) = args.pop(0).split('=', 1)
             if (param in params):
                 params[param] = value
     else:
@@ -280,7 +280,7 @@ cmd_table = {'help': CmdEntry(cmd_help,
                                            'Provide a list of available network technologies',  # noqa
                                            None),
              'list-services': CmdEntry(list_services,
-                                       'Display a list of available network services',
+                                       'Display a list of available network services',  # noqa
                                        None),
              'service-info': CmdEntry(service_info,
                                       'Display information about a network service',  # noqa
@@ -289,16 +289,16 @@ cmd_table = {'help': CmdEntry(cmd_help,
                                      'Get network service property by name',
                                      '<service path> [property]'),
              'service-set': CmdEntry(service_set,
-                                     'Set network service property by name, value',
+                                     'Set network service property by name, value',  # noqa
                                      '<service path> <property> <value>'),
              'service-rm': CmdEntry(service_rm,
                                     'Remove network service',
                                     '<service path>'),
              'technology-get': CmdEntry(technology_get,
-                                        'Get network technology property by name',
+                                        'Get network technology property by name',  # noqa
                                         '<tech path> [property]'),
              'technology-set': CmdEntry(technology_set,
-                                        'Set network technology property by name, value',
+                                        'Set network technology property by name, value',  # noqa
                                         '<tech path> <property> <value>'),
              'technology-info': CmdEntry(technology_info,
                                          'Display information about a network technology',  # noqa
@@ -313,7 +313,7 @@ cmd_table = {'help': CmdEntry(cmd_help,
                                          'Connect a network service',
                                          '<service path>'),
              'agent-start': CmdEntry(agent_start,
-                                     'Start network service authentication agent',
+                                     'Start network service authentication agent',  # noqa
                                      '<agent path> [param=value] ...'),  # noqa
              'agent-stop': CmdEntry(agent_stop,
                                    'Stop network service authentication agent',
@@ -349,7 +349,7 @@ try:
                                 pyconnman.ConnManager.SIGNAL_TECHNOLOGY_ADDED,
                                 None)
     manager.add_signal_receiver(dump_signal,
-                                pyconnman.ConnManager.SIGNAL_TECHNOLOGY_REMOVED,
+                                pyconnman.ConnManager.SIGNAL_TECHNOLOGY_REMOVED,  # noqa
                                 None)
     manager.add_signal_receiver(dump_signal,
                                 pyconnman.ConnManager.SIGNAL_SERVICES_CHANGED,

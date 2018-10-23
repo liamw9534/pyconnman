@@ -4,7 +4,7 @@ import dbus
 import types
 import pprint
 
-from exceptions import ConnSignalNameNotRecognisedException
+from .exceptions import ConnSignalNameNotRecognisedException
 
 
 def translate_to_dbus_type(typeof, value):

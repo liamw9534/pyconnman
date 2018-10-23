@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-from interface import ConnInterface
+from .interface import ConnInterface
 
 
 class ConnManager(ConnInterface):

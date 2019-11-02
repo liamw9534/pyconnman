@@ -349,7 +349,7 @@ class SimpleWifiAgent(GenericAgent):
 
         response = {}
 
-        services = self.service_params.keys()
+        services = list(self.service_params.keys())
         if (path in services):
             params = self.service_params[path]
         else:
@@ -384,7 +384,7 @@ class SimpleWifiAgent(GenericAgent):
             else:
                 raise ConnCanceledException('Password not configured by user')
 
-        if (not response.keys()):
+        if (not list(response.keys())):
             raise ConnCanceledException('Field(s) not configured by user')
 
         return response

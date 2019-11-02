@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
+from __future__ import print_function
 
+from builtins import input
 import readline  # noqa
 import pyconnman
 import sys
@@ -11,10 +13,10 @@ from collections import namedtuple
 
 
 def dump_signal(signal, *args):
-    print '\n========================================================='
-    print '>>>>>', signal, '<<<<<'
-    print args
-    print '========================================================='
+    print('\n=========================================================')
+    print('>>>>>', signal, '<<<<<')
+    print(args)
+    print('=========================================================')
 
 
 def cmd_help(args):
@@ -23,51 +25,51 @@ def cmd_help(args):
     if (len(args)):
         cmd_list = [args.pop(0)]
     else:
-        cmd_list = cmd_table.keys()
+        cmd_list = list(cmd_table.keys())
 
     for i in cmd_list:
-        print i, cmd_table[i].args, ":", cmd_table[i].desc
+        print(i, cmd_table[i].args, ":", cmd_table[i].desc)
 
 
 def list_technologies(args):
-    print '========================================================='
+    print('=========================================================')
     global manager
 
     try:
         technologies = manager.get_technologies()
         for i in technologies:
             (path, params) = i
-            print path, '['+params['Name']+']'
+            print(path, '['+params['Name']+']')
     except dbus.exceptions.DBusException:
-        print 'Unable to complete:', sys.exc_info()
+        print('Unable to complete:', sys.exc_info())
 
 
 def list_services(args):
-    print '========================================================='
+    print('=========================================================')
     global manager
 
     try:
         services = manager.get_services()
         for i in services:
             (path, params) = i
-            print path, '['+params['Name']+']'
+            print(path, '['+params['Name']+']')
     except dbus.exceptions.DBusException:
-        print 'Unable to complete:', sys.exc_info()
+        print('Unable to complete:', sys.exc_info())
 
 
 def service_info(args):
     if (len(args)):
         service_path = args.pop(0)
     else:
-        print 'Error: Must specify service path'
+        print('Error: Must specify service path')
         return
 
     try:
         service = pyconnman.ConnService(service_path)
-        print '========================================================='
-        print service
+        print('=========================================================')
+        print(service)
     except dbus.exceptions.DBusException:
-        print 'Unable to complete:', sys.exc_info()
+        print('Unable to complete:', sys.exc_info())
 
 
 def service_get(args):
@@ -78,16 +80,16 @@ def service_get(args):
         else:
             name = None
     else:
-        print 'Error: Must specify service path'
+        print('Error: Must specify service path')
         return
 
-    print '========================================================='
+    print('=========================================================')
 
     try:
         service = pyconnman.ConnService(service_path)
-        print service.get_property(name=name)
+        print(service.get_property(name=name))
     except dbus.exceptions.DBusException:
-        print 'Unable to complete:', sys.exc_info()
+        print('Unable to complete:', sys.exc_info())
 
 
 def service_set(args):
@@ -96,56 +98,56 @@ def service_set(args):
         name = args.pop(0)
         value = args.pop(0)
     else:
-        print 'Error: Requires service path, property name and value'
+        print('Error: Requires service path, property name and value')
         return
 
     try:
         service = pyconnman.ConnService(service_path)
         service.set_property(name, value)
     except dbus.exceptions.DBusException:
-        print 'Unable to complete:', sys.exc_info()
+        print('Unable to complete:', sys.exc_info())
 
 
 def service_disconnect(args):
     if (len(args)):
         service_path = args.pop(0)
     else:
-        print 'Error: Must specify service path'
+        print('Error: Must specify service path')
         return
 
     try:
         service = pyconnman.ConnService(service_path)
         service.disconnect()
     except dbus.exceptions.DBusException:
-        print 'Unable to complete:', sys.exc_info()
+        print('Unable to complete:', sys.exc_info())
 
 
 def service_connect(args):
     if (len(args)):
         service_path = args.pop(0)
     else:
-        print 'Error: Must specify service path'
+        print('Error: Must specify service path')
         return
 
     try:
         service = pyconnman.ConnService(service_path)
         service.connect()
     except dbus.exceptions.DBusException:
-        print 'Unable to complete:', sys.exc_info()
+        print('Unable to complete:', sys.exc_info())
 
 
 def service_rm(args):
     if (len(args)):
         service_path = args.pop(0)
     else:
-        print 'Error: Must specify service path'
+        print('Error: Must specify service path')
         return
 
     try:
         service = pyconnman.ConnService(service_path)
         service.remove()
     except dbus.exceptions.DBusException:
-        print 'Unable to complete:', sys.exc_info()
+        print('Unable to complete:', sys.exc_info())
 
 
 def technology_get(args):
@@ -156,15 +158,15 @@ def technology_get(args):
         else:
             name = None
     else:
-        print 'Error: Requires technology path'
+        print('Error: Requires technology path')
         return
 
     try:
         tech = pyconnman.ConnTechnology(tech_path)
-        print '========================================================='
-        print tech.get_property(name=name)
+        print('=========================================================')
+        print(tech.get_property(name=name))
     except dbus.exceptions.DBusException:
-        print 'Unable to complete:', sys.exc_info()
+        print('Unable to complete:', sys.exc_info())
 
 
 def technology_set(args):
@@ -173,44 +175,44 @@ def technology_set(args):
         name = args.pop(0)
         value = args.pop(0)
     else:
-        print 'Error: Requires technology path, property name and value'
+        print('Error: Requires technology path, property name and value')
         return
 
     try:
         tech = pyconnman.ConnTechnology(tech_path)
         tech.set_property(name, value)
     except dbus.exceptions.DBusException:
-        print 'Unable to complete:', sys.exc_info()
+        print('Unable to complete:', sys.exc_info())
 
 
 def technology_info(args):
     if (len(args)):
         tech_path = args.pop(0)
     else:
-        print 'Error: Must specify technology path'
+        print('Error: Must specify technology path')
         return
 
     try:
         tech = pyconnman.ConnTechnology(tech_path)
-        print '========================================================='
-        print tech
-        print '========================================================='
+        print('=========================================================')
+        print(tech)
+        print('=========================================================')
     except dbus.exceptions.DBusException:
-        print 'Unable to complete:', sys.exc_info()
+        print('Unable to complete:', sys.exc_info())
 
 
 def technology_scan(args):
     if (len(args)):
         tech_path = args.pop(0)
     else:
-        print 'Error: Must specify technology path'
+        print('Error: Must specify technology path')
         return
 
     try:
         tech = pyconnman.ConnTechnology(tech_path)
         tech.scan()
     except dbus.exceptions.DBusException:
-        print 'Unable to complete:', sys.exc_info()
+        print('Unable to complete:', sys.exc_info())
 
 
 def agent_start(args):
@@ -232,7 +234,7 @@ def agent_start(args):
             if (param in params):
                 params[param] = value
     else:
-        print 'Error: Must provide agent path e.g., /test/agent'
+        print('Error: Must provide agent path e.g., /test/agent')
         return
 
     try:
@@ -248,7 +250,7 @@ def agent_start(args):
         services[agent_path] = agent
         manager.register_agent(agent_path)
     except dbus.exceptions.DBusException:
-        print 'Unable to complete:', sys.exc_info()
+        print('Unable to complete:', sys.exc_info())
 
 
 def agent_stop(args):
@@ -258,14 +260,14 @@ def agent_stop(args):
     if (len(args)):
         path = args.pop(0)
     else:
-        print 'Error: Must provide agent path e.g., /test/agent'
+        print('Error: Must provide agent path e.g., /test/agent')
         return
 
     try:
         manager.unregister_agent(path)
         services[path].remove_from_connection()
     except dbus.exceptions.DBusException:
-        print 'Unable to complete:', sys.exc_info()
+        print('Unable to complete:', sys.exc_info())
 
 
 def exit_cleanup(args):
@@ -330,7 +332,7 @@ def invoke_command(text):
     if (cmd_entry):
         cmd_entry.func(args)
     else:
-        print 'Error: Command "%s" was not recognized.' % cmd
+        print('Error: Command "{}" was not recognized.'.format(cmd))
 
 
 def timeout_handler(signum, frame):
@@ -358,11 +360,11 @@ try:
                                 pyconnman.ConnManager.SIGNAL_PROPERTY_CHANGED,
                                 None)
 except dbus.exceptions.DBusException:
-    print 'Unable to complete:', sys.exc_info()
+    print('Unable to complete:', sys.exc_info())
 
 services = {}
 
 # Main command processing loop
 while True:
-    text = raw_input("CONN> ")
+    text = input("CONN> ")
     invoke_command(text)

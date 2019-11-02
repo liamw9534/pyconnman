@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from __future__ import print_function
 from mock_dbus import MockDBusInterface
 
 import unittest
@@ -24,12 +25,12 @@ class ConnManagerTest(unittest.TestCase):
 
     def test_manager_basic(self):
         manager = pyconnman.ConnManager()
-        print repr(manager)
-        print '========================================================='
-        print manager
-        print '========================================================='
-        print 'Technologies:', manager.get_technologies()
-        print 'Services:', manager.get_services()
+        print(repr(manager))
+        print('=========================================================')
+        print(manager)
+        print('=========================================================')
+        print('Technologies:', manager.get_technologies())
+        print('Services:', manager.get_services())
 
     def test_agent_registration(self):
         agent = '/agent/myagent'

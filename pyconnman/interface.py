@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 
+from builtins import object
 import dbus
 import types
 import pprint
@@ -17,8 +18,7 @@ def translate_to_dbus_type(typeof, value):
     :return: 'value' converted to type 'typeof'
     :rtype: typeof
     """
-    if ((isinstance(value, types.UnicodeType) or
-         isinstance(value, str)) and typeof is not dbus.String):
+    if (isinstance(value, str) and typeof is not dbus.String):
         # FIXME: This is potentially dangerous since it evaluates
         # a string in-situ
         return typeof(eval(value))
@@ -26,7 +26,7 @@ def translate_to_dbus_type(typeof, value):
         return typeof(value)
 
 
-class Signal():
+class Signal(object):
     """
     Encapsulation of user callback wrapper for signals
     fired by dbus.  This allows us to prepend the signal
@@ -53,7 +53,7 @@ class Signal():
         self.user_callback(self.signal, self.user_arg, *args)
 
 
-class ConnSimpleInterface:
+class ConnSimpleInterface(object):
     """
     Wrapper around dbus to encapsulated a connman simple interface
     entry point (i.e., has no signals or properties).
@@ -105,7 +105,7 @@ class ConnInterface(ConnSimpleInterface):
         ConnSimpleInterface.__init__(self, path, addr)
         self._signals = {}
         self._signal_names = []
-        self._properties = self._interface.GetProperties().keys()
+        self._properties = list(self._interface.GetProperties().keys())
         self._register_signal_name(ConnInterface.SIGNAL_PROPERTY_CHANGED)
 
     def _register_signal_name(self, name):

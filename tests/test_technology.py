@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from __future__ import print_function
 from mock_dbus import MockDBusInterface
 
 import unittest
@@ -26,10 +27,10 @@ class ConnTechnologyTest(unittest.TestCase):
         manager = pyconnman.ConnManager()
         technologies = manager.get_technologies()
         tech = pyconnman.ConnTechnology(technologies[0][0])
-        print repr(tech)
-        print '========================================================='
-        print tech
-        print '========================================================='
+        print(repr(tech))
+        print('=========================================================')
+        print(tech)
+        print('=========================================================')
         added = 'Added'
         removed = 'Removed'
         signal = pyconnman.ConnManager.SIGNAL_SERVICES_CHANGED

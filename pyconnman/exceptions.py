@@ -1,9 +1,10 @@
 from __future__ import unicode_literals
 
+from builtins import object
 import dbus
 
 
-class ConnSignalNameNotRecognisedException:
+class ConnSignalNameNotRecognisedException(object):
     """
     Exception raised for when a signal name is not recognized.
     Check the originating class for a list of supported signal names

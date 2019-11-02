@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 
+from builtins import str
 import unittest
 
 import pyconnman
@@ -21,13 +22,15 @@ class AgentTest(unittest.TestCase):
         # Raise an error
         path = '/service1'
         fields = {'Error': 'An error has occurred'}
+        str_error = ""
+        exception_raised = False
         try:
-            exception_raised = False
             agent.RequestInput(path, fields)
-        except pyconnman.ConnCanceledException, error:
+        except pyconnman.ConnCanceledException as error:
             exception_raised = True
+            str_error = str(error)
         self.assertTrue(exception_raised)
-        self.assertEqual(str(error), 'net.connman.Error.Canceled: Canceled')
+        self.assertEqual(str_error, 'net.connman.Error.Canceled: Canceled')
 
         # Requesting a passphrase for WPA2 network
         #
@@ -47,13 +50,15 @@ class AgentTest(unittest.TestCase):
         self.assertEqual(resp.get('Passphrase'), 'secret123')
 
         agent.set_service_params('/service1')  # Clear all params
+        str_error = ""
+        exception_raised = False
         try:
-            exception_raised = False
             resp = agent.RequestInput(path, fields)
-        except pyconnman.ConnCanceledException, error:
+        except pyconnman.ConnCanceledException as error:
             exception_raised = True
+            str_error = str(error)
         self.assertTrue(exception_raised)
-        self.assertEqual(str(error),
+        self.assertEqual(str_error,
                          'net.connman.Error.Canceled: '
                          'Field(s) not configured by user')
 
@@ -84,13 +89,15 @@ class AgentTest(unittest.TestCase):
         self.assertEqual(resp.get('Name'), 'My hidden network')
 
         agent.set_service_params('/service2')  # Clear params
+        str_error = ""
+        exception_raised = False
         try:
-            exception_raised = False
             resp = agent.RequestInput(path, fields)
-        except pyconnman.ConnCanceledException, error:
+        except pyconnman.ConnCanceledException as error:
             exception_raised = True
+            str_error = str(error)
         self.assertTrue(exception_raised)
-        self.assertEqual(str(error),
+        self.assertEqual(str_error,
                          'net.connman.Error.Canceled: '
                          'Field(s) not configured by user')
 
@@ -121,13 +128,15 @@ class AgentTest(unittest.TestCase):
         self.assertEqual(resp.get('WPS'), '123456')
 
         agent.set_service_params('/service3')  # Clear params
+        exception_raised = False
+        str_error = ""
         try:
-            exception_raised = False
             resp = agent.RequestInput(path, fields)
-        except pyconnman.ConnCanceledException, error:
+        except pyconnman.ConnCanceledException as error:
             exception_raised = True
+            str_error = str(error)
         self.assertTrue(exception_raised)
-        self.assertEqual(str(error),
+        self.assertEqual(str_error,
                          'net.connman.Error.Canceled: '
                          'Field(s) not configured by user')
 
@@ -160,13 +169,15 @@ class AgentTest(unittest.TestCase):
         self.assertEqual(resp.get('Passphrase'), 'secret123')
 
         agent.set_service_params('/service4')  # Clear params
+        exception_raised = False
+        str_error = ""
         try:
-            exception_raised = False
             resp = agent.RequestInput(path, fields)
-        except pyconnman.ConnCanceledException, error:
+        except pyconnman.ConnCanceledException as error:
             exception_raised = True
+            str_error = str(error)
         self.assertTrue(exception_raised)
-        self.assertEqual(str(error),
+        self.assertEqual(str_error,
                          'net.connman.Error.Canceled: '
                          'Identity not configured by user')
 
@@ -197,24 +208,28 @@ class AgentTest(unittest.TestCase):
         self.assertEqual(resp.get('Password'), 'secret')
 
         agent.set_service_params('/service5')
+        exception_raised = False
+        str_error = ""
         try:
-            exception_raised = False
             resp = agent.RequestInput(path, fields)
-        except pyconnman.ConnCanceledException, error:
+        except pyconnman.ConnCanceledException as error:
             exception_raised = True
+            str_error = str(error)
         self.assertTrue(exception_raised)
-        self.assertEqual(str(error),
+        self.assertEqual(str_error,
                          'net.connman.Error.Canceled: '
                          'Username not configured by user')
 
         agent.set_service_params('/service5', username='foo')
+        exception_raised = False
+        str_error = ""
         try:
-            exception_raised = False
             resp = agent.RequestInput(path, fields)
-        except pyconnman.ConnCanceledException, error:
+        except pyconnman.ConnCanceledException as error:
             exception_raised = True
+            str_error = str(error)
         self.assertTrue(exception_raised)
-        self.assertEqual(str(error),
+        self.assertEqual(str_error,
                          'net.connman.Error.Canceled: '
                          'Password not configured by user')
 

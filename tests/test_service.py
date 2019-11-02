@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from __future__ import print_function
 from mock_dbus import MockDBusInterface
 
 import unittest
@@ -26,8 +27,8 @@ class ConnServiceTest(unittest.TestCase):
         manager = pyconnman.ConnManager()
         services = manager.get_services()
         serv = pyconnman.ConnService(services[0][0])
-        print "Serv:", serv
-        print '========================================================='
+        print("Serv:", serv)
+        print('=========================================================')
         serv.connect()
         serv.disconnect()
         serv.move_before('a service')

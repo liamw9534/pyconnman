@@ -1,9 +1,10 @@
 from __future__ import unicode_literals
 
+from builtins import object
 import dbus
 
 
-class MockDBusInterface:
+class MockDBusInterface(object):
     """Mock dbus.Interface implementation for purpose of testing"""
     def __init__(self, obj, addr):
         self.addr = addr

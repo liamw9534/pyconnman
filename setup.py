@@ -8,11 +8,13 @@ from setuptools import setup, find_packages
 
 here = os.path.abspath(os.path.dirname(__file__))
 
+
 # this is taken from
 # https://packaging.python.org/guides/single-sourcing-package-version/
 def read(*parts):
     with codecs.open(os.path.join(here, *parts), 'r') as fp:
         return fp.read()
+
 
 def find_version(*file_paths):
     version_file = read(*file_paths)
@@ -38,6 +40,7 @@ setup(
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, <4',
     install_requires=[
         'setuptools',
+        'future',
     ],
     test_suite='nose.collector',
     tests_require=[

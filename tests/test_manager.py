@@ -35,10 +35,10 @@ class ConnManagerTest(unittest.TestCase):
     def test_agent_registration(self):
         agent = '/agent/myagent'
         manager = pyconnman.ConnManager()
+        exception_raised = False
         try:
-            exception_raised = False
             manager.register_agent(agent)
             manager.unregister_agent(agent)
-        except:
+        except dbus.Exception:
             exception_raised = True
         self.assertFalse(exception_raised)

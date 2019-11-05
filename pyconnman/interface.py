@@ -2,7 +2,6 @@ from __future__ import unicode_literals
 
 from builtins import object
 import dbus
-import types
 import pprint
 
 from .exceptions import ConnSignalNameNotRecognisedException

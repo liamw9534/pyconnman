@@ -1,21 +1,26 @@
 language: python
 
+os:
+  - linux
+
 python:
+  # with system_site_packages we can only test with python 2.7 and 3.5
   - "2.7"
-  - "3.3"
-  - "3.4"
   - "3.5"
-  - "3.6"
-  - "3.7"
+  # - "3.3"
+  # - "3.4"
+  # - "3.6"
+  # - "3.7"
 
 virtualenv:
   system_site_packages: true
 
 before_install:
-  - "sudo apt-get install python-dbus python-gobject"
+  - "sudo apt-get update"
+  - "sudo apt-get install -y python-dbus python-gobject"
 
 install:
-  - "pip install nose coveralls flake8"
+  - "pip install nose coveralls flake8 future"
 
 script:
   - "flake8 $(find . -iname '*.py')"

@@ -45,6 +45,11 @@ Project resources
 Changelog
 =========
 
+v0.2.0
+------
+
+Adds Python3 support
+
 v0.1.0
 ------
 

@@ -2,11 +2,11 @@
 pyconnman
 ****************************
 
-.. image:: https://pypip.in/version/pyconnman/badge.png?update
+.. image:: https://img.shields.io/pypi/v/pyconnman.svg?update=
     :target: https://pypi.python.org/pypi/pyconnman/
     :alt: Latest PyPI version
 
-.. image:: https://pypip.in/download/pyconnman/badge.png?update
+.. image:: https://img.shields.io/pypi/dm/pyconnman.svg?update=
     :target: https://pypi.python.org/pypi/pyconnman/
     :alt: Number of PyPI downloads
 
